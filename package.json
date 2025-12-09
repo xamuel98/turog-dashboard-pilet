@@ -1,0 +1,42 @@
+{
+  "name": "turog-frontend-test",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "pilet"
+  ],
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "piral-cli": "1.9.2",
+    "piral-cli-webpack5": "1.9.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router": "5.3.4",
+    "react-router-dom": "5.3.4",
+    "reactstrap": "8.10.1",
+    "sample-piral": "1.9.2",
+    "tslib": "2.8.1",
+    "typescript": "latest"
+  },
+  "scripts": {
+    "start": "pilet debug",
+    "build": "pilet build",
+    "upgrade": "pilet upgrade",
+    "postinstall": "pilet declaration",
+    "upgrade-pilet": "pilet upgrade --force-overwrite yes"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "importmap": {
+    "inherit": [
+      "sample-piral"
+    ],
+    "imports": {}
+  },
+  "source": "src/index.tsx"
+}
