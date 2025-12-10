@@ -125,7 +125,7 @@
   height: calc($spacing * 6);
   width: calc($spacing * 6);
   transform-origin: 50%;
-  border-radius: 50%;
+  border-radius: calc($radius * 1000);
   padding: calc($spacing * 1);
   -webkit-user-select: none;
   user-select: none;

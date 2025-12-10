@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import InputField from "../ui/InputField";
 import { useStore } from "../../hooks/useStore";
-import { Button } from "../ui";
+import { Button, InputField } from "../ui";
 
 interface PostFormProps {
   onSuccess?: () => void;
@@ -9,8 +8,8 @@ interface PostFormProps {
 
 const PostForm: React.FC<PostFormProps> = ({ onSuccess }) => {
   const addPost = useStore((state) => state.addPost);
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [body, setBody] = useState<string>("");
   const [errors, setErrors] = useState<{ title?: string; body?: string }>({});
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -41,6 +40,7 @@ const PostForm: React.FC<PostFormProps> = ({ onSuccess }) => {
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Enter post title"
         error={errors.title}
+        variant="filled"
       />
 
       <InputField
@@ -51,10 +51,11 @@ const PostForm: React.FC<PostFormProps> = ({ onSuccess }) => {
         onChange={(e) => setBody(e.target.value)}
         placeholder="Enter post content"
         error={errors.body}
+        variant="filled"
       />
 
       <div className="c-modal__footer">
-        <Button type="submit" className="c-button c-button--primary">
+        <Button type="submit" variant="primary">
           Add Post
         </Button>
       </div>

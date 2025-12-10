@@ -1,26 +1,49 @@
 import React from "react";
+import { PostCard, EmptyState } from "./";
+import { EmptyPostIcon } from "../Icons";
+import { Skeleton } from "../ui";
 import { Post } from "../../types";
-import PostCard from "./PostCard";
 
 interface PostListProps {
   posts: Post[];
   isLoading: boolean;
+  searchQuery?: string;
+  hasResults?: boolean;
 }
 
-const PostList: React.FC<PostListProps> = ({ posts, isLoading }) => {
+const PostList: React.FC<PostListProps> = ({
+  posts,
+  isLoading,
+  searchQuery = "",
+  hasResults = true,
+}) => {
   if (isLoading) {
     return (
-      <div className="c-post-list">
+      <div className="c-post-list" data-skeleton="true">
         {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="bg-gray-100 rounded-lg h-48 animate-pulse" />
+          <Skeleton key={i} height={32} borderRadius={1} />
         ))}
       </div>
     );
   }
 
+  if (!hasResults && searchQuery) {
+    return (
+      <EmptyState
+        title="No posts found"
+        subtitle={`We couldn't find any posts matching "${searchQuery}". Try a different search term.`}
+        icon={EmptyPostIcon}
+      />
+    );
+  }
+
   if (posts.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">No posts found.</div>
+      <EmptyState
+        title="Nothing to read here… for now"
+        subtitle="Refresh later to discover trending posts and growing publications."
+        icon={EmptyPostIcon}
+      />
     );
   }
 

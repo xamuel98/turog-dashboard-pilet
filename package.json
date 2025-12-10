@@ -9,6 +9,7 @@
     "@types/node": "latest",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "class-variance-authority": "^0.7.1",
     "dotenv": "^17.2.3",
     "piral-cli": "1.9.2",
     "piral-cli-webpack5": "1.9.2",
@@ -45,6 +46,7 @@
   },
   "source": "src/index.tsx",
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
     "clsx": "^2.1.1",
     "lucide-react": "^0.556.0",
     "zustand": "^5.0.9"

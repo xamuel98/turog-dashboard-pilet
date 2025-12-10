@@ -30,14 +30,55 @@
     color: $accent-foreground;
   }
 
+  &--secondary {
+    background-color: $default;
+    color: $accent;
+  }
+
   &--tertiary {
     background-color: $default;
     color: $default-foreground;
   }
 
+  &--outline {
+    border: 1px solid $separator;
+    color: $muted;
+    background-color: transparent;
+  }
+
+  &--ghost {
+    color: $default-foreground !important;
+    background-color: transparent !important;
+    text-decoration: none !important;
+  }
+
+  &--danger {
+    background-color: $danger;
+    color: $danger-foreground;
+  }
+
+  &--danger-soft {
+    color: $danger;
+  }
+
+  svg {
+    pointer-events: none;
+    margin-inline: calc($spacing * -0.5);
+    margin-block: calc($spacing * 0.5);
+    width: calc($spacing * 3);
+    height: calc($spacing * 3);
+    flex-shrink: 0;
+    align-self: center;
+  }
+
   &--icon-only {
     width: calc($spacing * 10);
     padding: calc($spacing * 0);
+
+    // svg {
+    //   width: calc($spacing * 5);
+    //   height: calc($spacing * 5);
+    // }
   }
 
   &[data-pressed="true"] {
@@ -50,22 +91,59 @@
     cursor: not-allowed;
     pointer-events: none;
   }
+}
 
-  svg {
-    pointer-events: none;
-    margin-inline: calc($spacing * -0.5);
-    margin-block: calc($spacing * 0.5);
-    width: calc($spacing * 5);
-    height: calc($spacing * 5);
-    flex-shrink: 0;
-    align-self: center;
+@supports (color: color-mix(in lab, red, red)) {
+  .c-button--danger-soft {
+    background-color: color-mix(in oklab, $danger 15%, transparent);
   }
 }
 
 @media (hover: hover) {
   @supports (color: color-mix(in lab, red, red)) {
-    .c-button--tertiary:hover {
-      background-color: color-mix(in oklab, $default 80%, transparent);
+    .c-button {
+      &--primary:hover,
+      .button--primary[data-hovered] {
+        background-color: color-mix(
+          in oklab,
+          $accent 90%,
+          $accent-foreground 10%
+        );
+      }
+
+      &--secondary:hover {
+        background-color: color-mix(in oklab, $default 80%, transparent);
+      }
+
+      &--tertiary:hover {
+        background-color: color-mix(in oklab, $default 80%, transparent);
+      }
+
+      &--outline:hover {
+        color: $muted;
+        border-color: color-mix(in oklab, $separator 80%, transparent);
+        background-color: color-mix(in oklab, $default 80%, transparent);
+      }
+
+      &--ghost:hover {
+        background-color: color-mix(
+          in oklab,
+          $default 80%,
+          transparent
+        ) !important;
+      }
+
+      &--danger:hover {
+        background-color: color-mix(
+          in oklab,
+          $danger 90%,
+          $danger-foreground 10%
+        );
+      }
+
+      &--danger-soft:hover {
+        background-color: color-mix(in oklab, $danger 20%, transparent);
+      }
     }
   }
 }

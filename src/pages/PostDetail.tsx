@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User } from "lucide-react";
 import { useStore } from "../hooks/useStore";
-import { Post } from "../types";
 import ErrorBoundary from "../errors/ErrorBoundary";
+import { Button } from "../components/ui";
+import { ChevronLeft } from "../components/Icons";
+import { dateFilter } from "../utils/filters";
+import { Post } from "../types";
+import placeholderImg from "../assets/placeholder.jpg";
 
 const PostDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { getPostById, fetchPosts, posts } = useStore();
   const [post, setPost] = useState<Post | undefined>(undefined);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const loadPost = async () => {
@@ -51,37 +54,45 @@ const PostDetail: React.FC = () => {
 
   return (
     <ErrorBoundary>
-      <div className="max-w-3xl mx-auto px-4 py-8">
-        <Link
-          to="/dashboard"
-          className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-6 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Dashboard
-        </Link>
+      <div className="c-section">
+        {/* Header */}
+        <header className="c-section__header">
+          <Button asChild variant="ghost" className="c-back-button">
+            <Link to="/dashboard">
+              <ChevronLeft />
+              Back
+            </Link>
+          </Button>
+        </header>
 
-        <article className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="p-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              {post.title}
-            </h1>
+        {/* Article */}
+        <article className="c-article">
+          <div className="c-article__container">
+            <div className="c-article__header">
+              <h1 className="c-article__title">{post.title}</h1>
 
-            <div className="flex items-center text-sm text-gray-500 mb-8 space-x-6">
-              <div className="flex items-center">
-                <User className="w-4 h-4 mr-2" />
-                <span>User {post.userId}</span>
-              </div>
-              <div className="flex items-center">
-                <Calendar className="w-4 h-4 mr-2" />
-                <span>{new Date().toLocaleDateString()}</span>
+              <div className="c-article__meta">
+                <div className="c-article__meta-user">
+                  <div
+                    className="c-article__user-avatar"
+                    style={{ backgroundImage: `url(${placeholderImg})` }}
+                  ></div>
+                  <div className="c-article__user-info">
+                    <div className="c-article__user-name">
+                      User {post.userId}
+                    </div>
+                    <div className="c-article__date">
+                      {dateFilter(new Date().toLocaleDateString())}
+                    </div>
+                  </div>
+                </div>
+                <Button variant="outline">Share</Button>
               </div>
             </div>
 
-            <div className="prose max-w-none text-gray-700 leading-relaxed">
+            <div className="c-article__available-content">
               {post.body.split("\n").map((paragraph, idx) => (
-                <p key={idx} className="mb-4">
-                  {paragraph}
-                </p>
+                <p key={idx}>{paragraph}</p>
               ))}
             </div>
           </div>

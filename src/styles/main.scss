@@ -8,6 +8,8 @@
 @use "./components/modal" as *;
 @use "./components/input" as *;
 @use "./components/pagination" as *;
+@use "./components/skeleton" as *;
+@use "./components/error-boundary" as *;
 
 // Import layout
 @use "./shared/layout" as *;
