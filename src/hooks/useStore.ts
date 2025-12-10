@@ -60,6 +60,7 @@ export const useStore = create<State>((set, get) => ({
         ...newPost,
         id: maxId + 1,
         userId: 1,
+        date: new Date().toISOString(),
       };
       return { posts: [post, ...state.posts] };
     });

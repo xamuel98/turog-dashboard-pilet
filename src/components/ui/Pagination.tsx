@@ -52,7 +52,7 @@ const Pagination: React.FC<PaginationProps> = ({
         {getVisiblePages().map((page, index) => (
           <React.Fragment key={index}>
             {page === "..." ? (
-              <span className="px-3 py-2 text-gray-400">...</span>
+              <span className="c-pagination__dots">...</span>
             ) : (
               <Button
                 onClick={() => onPageChange(page as number)}

@@ -24,6 +24,12 @@
       }
     }
   }
+
+  &__dots {
+    @extend %flex-center;
+    width: calc($spacing * 10);
+    padding: calc($spacing * 0);
+  }
 }
 
 @media (hover: hover) {

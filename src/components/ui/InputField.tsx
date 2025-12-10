@@ -46,6 +46,7 @@ const InputField = ({
             className={clsx("c-textarea", `c-textarea--${variant}`)}
             id={name}
             name={name}
+            data-invalid={!!error}
             {...(props as ComponentProps<"textarea">)}
           />
         ) : (
@@ -53,6 +54,7 @@ const InputField = ({
             className={clsx("c-input", `c-input--${variant}`)}
             id={name}
             name={name}
+            data-invalid={!!error}
             {...(props as ComponentProps<"input">)}
           />
         )}
