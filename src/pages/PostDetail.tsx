@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User } from "lucide-react";
 import { useStore } from "../hooks/useStore";
-import { Post } from "../types";
+import { ArrowLeft, Calendar, User } from "lucide-react";
 import ErrorBoundary from "../errors/ErrorBoundary";
+import { Post } from "../types";
 
 const PostDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { getPostById, fetchPosts, posts } = useStore();
   const [post, setPost] = useState<Post | undefined>(undefined);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const loadPost = async () => {

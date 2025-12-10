@@ -1,0 +1,45 @@
+@use "../core/variables" as *;
+
+.c-skeleton {
+  position: relative;
+  border-radius: calc($radius * var(--skeleton-radius, 0.5));
+  background-color: $surface;
+  height: calc($spacing * var(--skeleton-height, 3));
+  pointer-events: none;
+  overflow: hidden;
+
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(
+      in oklab,
+      color-mix(in oklab, $surface 86%, $foreground 14%) 70%,
+      transparent
+    );
+  }
+
+  &--shimmer {
+    &::after {
+      @supports (color: color-mix(in lab, red, red)) {
+        content: "";
+        position: absolute;
+        inset: 0;
+        translate: -100% 0;
+        background-image: linear-gradient(
+          to right,
+          transparent,
+          color-mix(in oklab, $surface 86%, $default-foreground 14%),
+          transparent
+        );
+        animation: skeleton 2s linear infinite;
+      }
+    }
+  }
+
+  @keyframes skeleton {
+    0% {
+      translate: -200%;
+    }
+    100% {
+      transform: translate(200%);
+    }
+  }
+}

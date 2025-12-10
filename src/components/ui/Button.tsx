@@ -1,6 +1,6 @@
 import React, { ComponentProps } from "react";
-import clsx from "clsx";
 import { usePressed } from "../../hooks/usePressed";
+import clsx from "clsx";
 
 const Button = ({ className, ...props }: ComponentProps<"button">) => {
   const { isPressed, pressHandlers } = usePressed();

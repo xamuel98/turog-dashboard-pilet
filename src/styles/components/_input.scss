@@ -15,8 +15,8 @@
 
   .c-input,
   .c-textarea {
-    box-shadow: 0 0 0 calc(1px + 0px) $danger, $field-shadow;
-    outline-style: none;
+    border-color: $danger;
+    box-shadow: 0 0 0 3px color-mix(in oklab, $danger 15%, transparent);
   }
 }
 
@@ -27,12 +27,76 @@
   color: $foreground;
 }
 
+.c-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &.has-icons {
+    .c-input {
+      padding-left: calc($spacing * 10);
+      padding-right: calc($spacing * 10);
+    }
+  }
+}
+
+.c-input-prepend,
+.c-input-append {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: $muted;
+  z-index: 1;
+
+  svg {
+    width: calc($spacing * 4);
+    height: calc($spacing * 4);
+
+    circle,
+    line {
+      stroke: $muted;
+    }
+  }
+}
+
+.c-input-prepend {
+  left: calc($spacing * 3);
+}
+
+.c-input-append {
+  right: calc($spacing * 3);
+  top: 50%;
+  transform: translate(3px, -55%);
+  pointer-events: auto;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc($spacing * 6);
+    height: calc($spacing * 6);
+    border-radius: calc($radius * 1000);
+    font-size: 1.25rem;
+    color: $muted;
+    cursor: pointer;
+    transition: background-color 0.15s $ease-smooth, color 0.15s $ease-smooth;
+
+    &:hover {
+      background-color: $default;
+      color: $foreground;
+    }
+  }
+}
+
 .c-input,
 .c-textarea {
   width: 100%;
   border-radius: calc($radius * 1.5);
-  border: 1px solid $field-border;
-  background-color: #ededed;
+  border-width: 1px;
+  border-style: solid;
   transition: background-color 0.15s $ease-smooth,
     border-color 0.15s $ease-smooth, box-shadow 0.15s $ease-out;
   padding-inline: calc($spacing * 3);
@@ -44,11 +108,22 @@
   outline-style: none;
 
   &:focus {
-    border-color: $field-border;
+    border-color: $accent;
+    box-shadow: 0 0 0 3px color-mix(in oklab, $accent 15%, transparent);
   }
 
   &::placeholder {
     color: $field-placeholder;
+  }
+
+  &--default {
+    border-color: $separator;
+    background-color: $field-background;
+  }
+
+  &--filled {
+    border-color: $field-border;
+    background-color: #ededed;
   }
 }
 
@@ -68,4 +143,13 @@
     opacity: 1;
     height: auto;
   }
+}
+
+.description,
+.field-error {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  line-height: calc(1.25 / 0.75);
+  overflow: hidden;
 }

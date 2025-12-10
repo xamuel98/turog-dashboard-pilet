@@ -1,7 +1,6 @@
 import React from "react";
-import Button from "./Button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import clsx from "clsx";
+import { Button } from "./";
+import { ChevronLeft, ChevronRight } from "../Icons";
 
 interface PaginationProps {
   currentPage: number;
@@ -37,6 +36,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div className="c-pagination">
+      {/* Previous button */}
       <Button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
@@ -46,6 +46,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <ChevronLeft />
       </Button>
 
+      {/* Page buttons */}
       <div className="c-pagination__pages">
         {getVisiblePages().map((page, index) => (
           <React.Fragment key={index}>
@@ -54,12 +55,7 @@ const Pagination: React.FC<PaginationProps> = ({
             ) : (
               <Button
                 onClick={() => onPageChange(page as number)}
-                className={clsx(
-                  "c-button c-button--icon-only",
-                  currentPage === page
-                    ? "bg-blue-600 text-white shadow-sm"
-                    : "text-gray-700 hover:bg-gray-100"
-                )}
+                className="c-button c-button--icon-only"
                 data-active-page={currentPage === page}
               >
                 {page}
@@ -69,6 +65,7 @@ const Pagination: React.FC<PaginationProps> = ({
         ))}
       </div>
 
+      {/* Next button */}
       <Button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
