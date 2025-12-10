@@ -1,0 +1,71 @@
+@use "../core/variables" as *;
+
+.c-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+  height: calc($spacing * 10);
+  gap: calc($spacing * 2);
+  border-radius: calc($radius * 3);
+  padding: 0 calc($spacing * 4);
+  transform-origin: 50%;
+  font-size: 0.875rem;
+  line-height: calc(1.25 / 0.875);
+  font-weight: $font-weight-medium;
+  white-space: nowrap;
+  outline-style: none;
+  -webkit-user-select: none;
+  user-select: none;
+  outline-style: none;
+  cursor: pointer;
+  isolation: isolate;
+  transition: transform 0.25s $ease-out-quart,
+    background-color 0.15s $ease-smooth, box-shadow 0.15s $ease-out;
+  transform: translateZ(0);
+
+  &--primary {
+    background-color: $accent;
+    color: $accent-foreground;
+  }
+
+  &--tertiary {
+    background-color: $default;
+    color: $default-foreground;
+  }
+
+  &--icon-only {
+    width: calc($spacing * 10);
+    padding: calc($spacing * 0);
+  }
+
+  &[data-pressed="true"] {
+    transform: scale(0.97);
+  }
+
+  &:disabled,
+  &[aria-disabled] {
+    opacity: $disabled-opacity;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  svg {
+    pointer-events: none;
+    margin-inline: calc($spacing * -0.5);
+    margin-block: calc($spacing * 0.5);
+    width: calc($spacing * 5);
+    height: calc($spacing * 5);
+    flex-shrink: 0;
+    align-self: center;
+  }
+}
+
+@media (hover: hover) {
+  @supports (color: color-mix(in lab, red, red)) {
+    .c-button--tertiary:hover {
+      background-color: color-mix(in oklab, $default 80%, transparent);
+    }
+  }
+}

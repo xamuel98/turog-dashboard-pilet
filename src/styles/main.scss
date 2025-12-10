@@ -1,0 +1,18 @@
+// Import core styles
+@use "./core/variables" as *;
+@use "./core/reset" as *;
+@use "./core/globals" as *;
+
+// Import components
+@use "./components/button" as *;
+@use "./components/modal" as *;
+@use "./components/input" as *;
+@use "./components/pagination" as *;
+
+// Import layout
+@use "./shared/layout" as *;
+@use "./shared/post" as *;
+
+// Import utils
+@use "./utils/functions" as *;
+@use "./utils/mixins" as *;

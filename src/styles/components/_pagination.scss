@@ -1,0 +1,36 @@
+@use "../core/variables" as *;
+@use "../shared/layout" as *;
+
+.c-pagination {
+  @extend %flex-center;
+  margin-top: calc($spacing * 6);
+
+  > * + * {
+    margin-left: calc($spacing * 2);
+  }
+
+  &__pages {
+    display: flex;
+    align-items: center;
+
+    > * + * {
+      margin-left: calc($spacing * 2);
+    }
+
+    button {
+      &[data-active-page="true"] {
+        background-color: $accent !important;
+        color: $accent-foreground !important;
+      }
+    }
+  }
+}
+
+@media (hover: hover) {
+  @supports (color: color-mix(in lab, red, red)) {
+    .c-pagination__pages button:hover {
+      background-color: $default;
+      color: $default-foreground;
+    }
+  }
+}

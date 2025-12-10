@@ -1,0 +1,141 @@
+@use "../core/variables" as *;
+@use "../shared/layout" as *;
+@use "../utils/mixins" as *;
+
+.c-posts__container {
+  margin-bottom: calc($spacing * 6);
+
+  &__header {
+    font-size: 1rem;
+    font-weight: $font-weight-semibold;
+    letter-spacing: -0.025em;
+    margin-bottom: calc($spacing * 4);
+  }
+}
+
+.c-post-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  //   gap: calc($spacing * 6);
+
+  @media (min-width: 48rem) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 64rem) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  > * + * {
+    // border-top: 1px solid $separator;
+  }
+}
+
+.c-post {
+  @extend %flex-col;
+  width: 100%;
+  margin: 0;
+
+  &__container {
+    @extend %flex-col;
+    position: relative;
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: calc($spacing * 5);
+    gap: calc($spacing * 5);
+    font-size: 0.875rem;
+    line-height: calc(1.25 / 0.875);
+    font-weight: $font-weight-semibold;
+    letter-spacing: -0.025em;
+    transition: color 0.15s $ease-smooth, background-color 0.15s $ease-smooth,
+      border-color 0.15s $ease-smooth, box-shadow 0.15s $ease-out;
+    text-decoration: none !important;
+  }
+
+  &__content {
+    @extend %flex-col;
+    min-width: 0;
+    gap: calc($spacing * 2);
+  }
+
+  &__title,
+  &__body {
+    text-transform: capitalize;
+  }
+
+  &__title {
+    @include clamp-lines(1);
+    font-size: 1rem;
+    font-weight: $font-weight-bold;
+    letter-spacing: -0.0187rem;
+    color: $foreground;
+    line-height: 1.5rem;
+  }
+
+  &__body {
+    @include clamp-lines(2);
+    font-size: 0.875rem;
+    line-height: calc(1.25 / 0.875);
+    font-weight: $font-weight-normal;
+    letter-spacing: 0.0094rem;
+    color: $muted;
+    overflow-wrap: break-word;
+  }
+
+  &__meta {
+    display: inline;
+    font-weight: $font-weight-medium;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    line-height: 1rem;
+    letter-spacing: -0.0125rem;
+    color: $muted;
+
+    &-user {
+      display: inline-flex;
+      align-items: center;
+      gap: calc($spacing * 1);
+
+      svg path {
+        fill: $warning;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    width: 100%;
+
+    &__link {
+      display: inline-flex;
+      align-items: center;
+      font-weight: $font-weight-medium;
+      transition: color 0.15s $ease-smooth;
+
+      svg {
+        margin-left: calc($spacing * 1);
+      }
+    }
+  }
+}
+
+@media (hover: hover) {
+  @supports (color: color-mix(in lab, red, red)) {
+    .c-post:hover {
+      background-color: #f9f9f9;
+    }
+
+    .c-post__container:hover {
+      .c-post__footer-link {
+        color: $accent !important;
+
+        svg path {
+          fill: $accent !important;
+        }
+      }
+    }
+  }
+}

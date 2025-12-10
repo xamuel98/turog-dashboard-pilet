@@ -1,0 +1,4 @@
+// Export all components in posts directory
+export { default as PostList } from "./PostList";
+export { default as PostCard } from "./PostCard";
+export { default as PostForm } from "./PostForm";

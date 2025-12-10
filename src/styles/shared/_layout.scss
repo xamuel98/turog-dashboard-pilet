@@ -1,0 +1,58 @@
+@use "../core/variables" as *;
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+%flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-section {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  &__header {
+    margin-bottom: 2rem;
+    @extend %flex-between;
+
+    &__group {
+      @extend %flex-col;
+      gap: 0.5rem;
+    }
+
+    &__title {
+      font-size: 1.125rem;
+      line-height: 1;
+      font-weight: $font-weight-semibold;
+      letter-spacing: -0.025em;
+    }
+
+    &__subtitle {
+      color: $muted;
+      font-size: 0.875rem;
+      line-height: calc($spacing * 6);
+      text-wrap: pretty;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    padding-inline: 0;
+  }
+}
+
+@media (max-width: 48rem) {
+  .app-content {
+    padding: 0 1.5rem;
+  }
+}

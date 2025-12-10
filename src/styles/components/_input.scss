@@ -1,0 +1,71 @@
+@use "../core/variables" as *;
+@use "../shared/layout" as *;
+
+.text-field {
+  @extend %flex-col;
+  gap: calc($spacing * 1);
+  color: $field-background;
+  width: 100%;
+}
+
+[data-invalid="true"] {
+  .c-label {
+    color: $danger;
+  }
+
+  .c-input,
+  .c-textarea {
+    box-shadow: 0 0 0 calc(1px + 0px) $danger, $field-shadow;
+    outline-style: none;
+  }
+}
+
+.c-label {
+  font-size: 0.875rem;
+  line-height: calc(1.25 / 0.875);
+  font-weight: $font-weight-medium;
+  color: $foreground;
+}
+
+.c-input,
+.c-textarea {
+  width: 100%;
+  border-radius: calc($radius * 1.5);
+  border: 1px solid $field-border;
+  background-color: #ededed;
+  transition: background-color 0.15s $ease-smooth,
+    border-color 0.15s $ease-smooth, box-shadow 0.15s $ease-out;
+  padding-inline: calc($spacing * 3);
+  padding-block: calc($spacing * 2);
+  font-size: 0.875rem;
+  line-height: calc(1.25 / 0.875);
+  color: $field-foreground;
+  box-shadow: 0 0 #0000;
+  outline-style: none;
+
+  &:focus {
+    border-color: $field-border;
+  }
+
+  &::placeholder {
+    color: $field-placeholder;
+  }
+}
+
+.c-textarea {
+  min-height: 6.25rem;
+  resize: vertical;
+}
+
+.field-error {
+  height: calc($spacing * 0);
+  padding-inline: calc($spacing * 1);
+  color: $danger;
+  opacity: 0;
+  transition: opacity 0.15s $ease-out, height 0.35s $ease-smooth;
+
+  &[data-visible="true"] {
+    opacity: 1;
+    height: auto;
+  }
+}

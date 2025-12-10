@@ -1,0 +1,149 @@
+@use "../core/variables" as *;
+@use "../utils/functions" as *;
+@use "../shared/layout" as *;
+
+.c-modal {
+  position: fixed;
+  @extend %flex-center;
+  inset: 0;
+  z-index: z("modal");
+  padding: 1rem;
+
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    isolation: isolate;
+    z-index: z("overlay");
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.4),
+      transparent
+    );
+
+    &--blur {
+      -webkit-backdrop-filter: blur(0.75rem);
+      backdrop-filter: blur(0.75rem);
+    }
+  }
+
+  &__container {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    left: 50%;
+    z-index: z("modal");
+    transform: translateZ(0);
+    max-height: 100%;
+    width: 100%;
+    padding: 0 calc($spacing * 2);
+    outline-style: none;
+    will-change: transform;
+
+    top: calc(100% - 0.5rem);
+    translate: calc(calc(1 / 2 * 100%) * -1) -100%;
+    align-items: flex-end;
+
+    @media (min-width: 40rem) {
+      top: calc(100% / 2);
+      align-items: center;
+      translate: calc(calc(1 / 2 * 100%) * -1) calc(calc(1 / 2 * 100%) * -1);
+      padding: 0;
+    }
+  }
+
+  &__dialog {
+    position: relative;
+    @extend %flex-col;
+    width: 100%;
+    border-radius: calc($radius * 3);
+    background-color: $overlay;
+
+    box-shadow: $overlay-shadow;
+    outline-style: none;
+
+    &--scroll-inside {
+      max-height: calc(100% - 8rem);
+      overflow-y: hidden;
+    }
+
+    @media (min-width: 40rem) {
+      max-width: 28rem;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: calc($spacing * 3);
+    padding: calc($spacing * 4);
+    border-bottom: 1px solid $separator;
+  }
+
+  &__heading {
+    flex-grow: 1;
+    vertical-align: middle;
+    font-size: 0.875rem;
+    line-height: calc(1.25 / 0.875);
+    font-weight: $font-weight-medium;
+    color: $foreground;
+  }
+
+  &__close-trigger {
+    padding: calc($spacing * 2);
+    color: $muted;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: $default;
+        color: $foreground;
+      }
+    }
+  }
+
+  &__body {
+    padding: calc($spacing * 4);
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    gap: calc($spacing * 2);
+  }
+}
+
+.close-button {
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  position: relative;
+  isolation: isolate;
+  height: calc($spacing * 6);
+  width: calc($spacing * 6);
+  transform-origin: 50%;
+  border-radius: 50%;
+  padding: calc($spacing * 1);
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.25s $ease-out-quart, color 0.15s $ease-out,
+    background-color 0.15s $ease-smooth, box-shadow 0.15s $ease-out;
+  transform: translateZ(0);
+  flex-shrink: 0;
+
+  svg {
+    width: calc($spacing * 4);
+    height: calc($spacing * 4);
+    flex-shrink: 0;
+    align-self: center;
+  }
+}
+
+.c-post__form {
+  @extend %flex-col;
+  gap: 1rem;
+}
