@@ -36,8 +36,10 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  > * + * {
-    // border-top: 1px solid $separator;
+  @media (max-width: 48rem) {
+    > * + * {
+      border-top: 1px solid $separator;
+    }
   }
 }
 

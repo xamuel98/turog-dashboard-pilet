@@ -16,17 +16,11 @@ const buttonVariants = cva("c-button", {
       ghost: "c-button--ghost",
     },
     size: {
-      // default: "c-button--default",
-      // sm: "c-button--sm",
-      // lg: "c-button--lg",
       icon: "c-button--icon-only",
-      // "icon-sm": "c-button--icon-sm",
-      // "icon-lg": "c-button--icon-lg",
     },
   },
   defaultVariants: {
     variant: "primary",
-    // size: "default",
   },
 });
 

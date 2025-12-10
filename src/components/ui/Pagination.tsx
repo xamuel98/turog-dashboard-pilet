@@ -15,9 +15,31 @@ const Pagination: React.FC<PaginationProps> = ({
 }) => {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
+  // Detect mobile screen size
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   // Logic to show a window of pages if too many
   const getVisiblePages = () => {
-    if (totalPages <= 7) return pages;
+    const maxVisible = isMobile ? 3 : 7;
+
+    if (totalPages <= maxVisible) return pages;
+
+    if (isMobile) {
+      if (currentPage === 1) return [1, 2, "...", totalPages];
+      if (currentPage === totalPages)
+        return [1, "...", totalPages - 1, totalPages];
+      return [1, "...", currentPage, "...", totalPages];
+    }
 
     if (currentPage <= 4) return [...pages.slice(0, 5), "...", totalPages];
     if (currentPage >= totalPages - 3)
