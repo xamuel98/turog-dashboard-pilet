@@ -55,7 +55,7 @@ const PostForm: React.FC<PostFormProps> = ({ onSuccess }) => {
       />
 
       <div className="c-modal__footer">
-        <Button type="submit" className="c-button c-button--primary">
+        <Button type="submit" variant="primary">
           Add Post
         </Button>
       </div>

@@ -58,10 +58,7 @@ const DashboardPage: React.FC = () => {
               Manage and view your posts
             </p>
           </div>
-          <Button
-            onClick={() => setIsModalOpen(true)}
-            className="c-button c-button--primary"
-          >
+          <Button onClick={() => setIsModalOpen(true)} variant="primary">
             New Post
           </Button>
         </header>

@@ -40,7 +40,8 @@ const Pagination: React.FC<PaginationProps> = ({
       <Button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="c-button c-button--icon-only c-button--tertiary"
+        variant="tertiary"
+        size="icon"
         aria-label="Previous page"
       >
         <ChevronLeft />
@@ -55,7 +56,8 @@ const Pagination: React.FC<PaginationProps> = ({
             ) : (
               <Button
                 onClick={() => onPageChange(page as number)}
-                className="c-button c-button--icon-only"
+                variant={currentPage === page ? "primary" : "tertiary"}
+                size="icon"
                 data-active-page={currentPage === page}
               >
                 {page}
@@ -69,7 +71,8 @@ const Pagination: React.FC<PaginationProps> = ({
       <Button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="c-button c-button--icon-only c-button--tertiary"
+        variant="tertiary"
+        size="icon"
         aria-label="Next page"
       >
         <ChevronRight />

@@ -71,9 +71,9 @@ export const ChevronLeft: React.FC<IconProps> = (props) => (
       points="7.75 1.75 3.5 6 7.75 10.25"
       fill="none"
       stroke="#000"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.5"
     ></polyline>
   </svg>
 );
@@ -91,9 +91,9 @@ export const ChevronRight: React.FC<IconProps> = (props) => (
       points="4.25 10.25 8.5 6 4.25 1.75"
       fill="none"
       stroke="#000"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.5"
     ></polyline>
   </svg>
 );
@@ -145,18 +145,18 @@ export const TriangleWarning: React.FC<IconProps> = (props) => (
       y2="7.75"
       fill="none"
       stroke="#f7f8f8"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.5"
       data-color="color-2"
     ></line>
     <path
       d="m8.625,10.25h1.164c1.123,0,1.826-1.216,1.265-2.189L7.265,1.484c-.562-.975-1.969-.975-2.53,0L.946,8.061c-.561.973.142,2.189,1.265,2.189h1.164"
       fill="none"
       stroke="#f7f8f8"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.5"
     ></path>
   </svg>
 );
@@ -190,5 +190,16 @@ export const SearchIcon: React.FC<IconProps> = (props) => (
       strokeLinejoin="round"
       strokeWidth="1.5"
     />
+  </svg>
+);
+
+export const MoreFill: React.FC<IconProps> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    {...props}
+  >
+    <path d="M5 10C3.9 10 3 10.9 3 12C3 13.1 3.9 14 5 14C6.1 14 7 13.1 7 12C7 10.9 6.1 10 5 10ZM19 10C17.9 10 17 10.9 17 12C17 13.1 17.9 14 19 14C20.1 14 21 13.1 21 12C21 10.9 20.1 10 19 10ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"></path>
   </svg>
 );

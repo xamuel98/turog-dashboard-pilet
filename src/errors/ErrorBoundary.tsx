@@ -71,10 +71,7 @@ class ErrorBoundary extends Component<Props, State> {
                 </div>
               )}
 
-              <Button
-                onClick={this.handleRetry}
-                className="c-button c-button--primary"
-              >
+              <Button onClick={this.handleRetry} variant="primary">
                 Try again
               </Button>
             </div>

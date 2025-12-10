@@ -62,6 +62,22 @@
     text-decoration: none !important;
   }
 
+  &__header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    span {
+      font-size: 11px;
+      line-height: 1.25rem;
+      font-weight: $font-weight-medium;
+      letter-spacing: 0.0125rem;
+      color: $muted;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+  }
+
   &__content {
     @extend %flex-col;
     min-width: 0;
@@ -131,6 +147,89 @@
   }
 }
 
+.c-article {
+  max-width: 48rem;
+  width: 100%;
+  margin: 0 auto;
+
+  &__container {
+    @media (min-width: 48rem) {
+      margin-left: calc($spacing * 8);
+    }
+  }
+
+  &__title {
+    font-size: 2rem;
+    line-height: 2.25rem;
+    font-weight: $font-weight-bold;
+    letter-spacing: -0.0125rem;
+    color: $foreground;
+    text-transform: capitalize;
+    margin-bottom: calc($spacing * 3);
+  }
+
+  &__meta {
+    @extend %flex-between;
+    flex: 1;
+    gap: calc($spacing * 4);
+    padding-block: calc($spacing * 4);
+    margin-bottom: calc($spacing * 4);
+    border-bottom: 1px solid $separator;
+
+    &-user {
+      display: flex;
+      align-items: center;
+      gap: calc($spacing * 3);
+    }
+  }
+
+  &__date {
+    color: $muted;
+  }
+
+  &__user-avatar {
+    width: calc($spacing * 9);
+    height: calc($spacing * 9);
+    background-size: cover;
+    background-position: center;
+    background-color: aquamarine;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    border-radius: calc($spacing * 1000);
+    overflow: hidden;
+  }
+
+  &__user-info {
+    @extend %flex-col;
+    font-size: 0.6875rem;
+    line-height: 1.25rem;
+    font-weight: $font-weight-medium;
+    letter-spacing: -0.0125rem;
+    color: $foreground;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+  }
+
+  &__available-content {
+    // display: flex;
+    word-break: break-word;
+    margin-bottom: calc($spacing * 4);
+    width: 100%;
+
+    p {
+      font-family: -apple-system-ui-serif, ui-serif, "Spectral", "Georgia",
+        serif;
+      max-width: none;
+      line-height: 1.6em;
+      color: $muted;
+      word-break: break-word;
+      margin: 0 0 calc($spacing * 5) 0;
+    }
+
+    // prose max-w-none text-gray-700 leading-relaxed
+  }
+}
+
 @media (hover: hover) {
   @supports (color: color-mix(in lab, red, red)) {
     .c-post:hover {
@@ -146,5 +245,11 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 48rem) {
+  .c-back-button {
+    margin-left: calc($spacing * -2);
   }
 }
