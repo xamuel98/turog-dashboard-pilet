@@ -82,7 +82,9 @@ const PostDetail: React.FC = () => {
                       User {post.userId}
                     </div>
                     <div className="c-article__date">
-                      {dateFilter(new Date().toLocaleDateString())}
+                      {dateFilter(
+                        post?.date ?? new Date().toLocaleDateString()
+                      )}
                     </div>
                   </div>
                 </div>

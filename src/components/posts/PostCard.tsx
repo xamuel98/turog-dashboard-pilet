@@ -13,7 +13,9 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
     <div className="c-post">
       <Link to={`/dashboard/${post.id}`} className="c-post__container">
         <div className="c-post__header">
-          <span>{dateFilter(new Date().toLocaleDateString())}</span>
+          <span>
+            {dateFilter(post?.date ?? new Date().toLocaleDateString())}
+          </span>
         </div>
         <div className="c-post__content">
           <h3 className="c-post__title" title={post.title}>

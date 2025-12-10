@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
+import { useFormik } from "formik";
 import { useStore } from "../../hooks/useStore";
+import postFormSchema from "../../schemas/post-form-schema";
 import { Button, InputField } from "../ui";
+import { NewPost } from "../../types";
 
 interface PostFormProps {
   onSuccess?: () => void;
@@ -8,38 +11,38 @@ interface PostFormProps {
 
 const PostForm: React.FC<PostFormProps> = ({ onSuccess }) => {
   const addPost = useStore((state) => state.addPost);
-  const [title, setTitle] = useState<string>("");
-  const [body, setBody] = useState<string>("");
-  const [errors, setErrors] = useState<{ title?: string; body?: string }>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const newErrors: { title?: string; body?: string } = {};
-
-    if (!title.trim()) newErrors.title = "Title is required";
-    if (!body.trim()) newErrors.body = "Body is required";
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    addPost({ title, body });
-    setTitle("");
-    setBody("");
-    setErrors({});
-    if (onSuccess) onSuccess();
-  };
+  const {
+    handleSubmit,
+    values,
+    handleChange,
+    handleBlur,
+    errors,
+    touched,
+    isValid,
+  } = useFormik<NewPost>({
+    initialValues: {
+      title: "",
+      body: "",
+    },
+    validationSchema: postFormSchema,
+    onSubmit: (values, { resetForm }) => {
+      addPost(values);
+      resetForm();
+      if (onSuccess) onSuccess();
+    },
+  });
 
   return (
     <form onSubmit={handleSubmit} className="c-post__form">
       <InputField
         label="Title"
         name="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={values.title}
+        onChange={handleChange}
+        onBlur={handleBlur}
         placeholder="Enter post title"
-        error={errors.title}
+        error={touched.title ? errors.title : undefined}
         variant="filled"
       />
 
@@ -47,15 +50,16 @@ const PostForm: React.FC<PostFormProps> = ({ onSuccess }) => {
         as="textarea"
         label="Body"
         name="body"
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
+        value={values.body}
+        onChange={handleChange}
+        onBlur={handleBlur}
         placeholder="Enter post content"
-        error={errors.body}
+        error={touched.body ? errors.body : undefined}
         variant="filled"
       />
 
       <div className="c-modal__footer">
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" disabled={!isValid}>
           Add Post
         </Button>
       </div>
